@@ -2,9 +2,15 @@ import logo from "../assets/images/icons/noun-roll-film-2175698.png";
 import shoppingCart from "../assets/images/icons/noun-cart-2175616.png";
 import ShoppingCart from "./ShoppingCart";
 
-// function Navbar() {
 const Navbar = (props) => {
-	const { cart, onRemoveFilm, onRemoveAll, onSubmitOrder, checkout, onCompletedCheckout } = props;
+	const {
+		cart,
+		onRemoveFilm,
+		onRemoveAll,
+		onSubmitOrder,
+		checkout,
+		onCompletedCheckout,
+	} = props;
 	const cartTotalItems = cart.reduce((a, c) => a + c.Quantity, 0);
 
 	return (

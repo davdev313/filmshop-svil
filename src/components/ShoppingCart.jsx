@@ -11,7 +11,6 @@ const ShoppingCart = (props) => {
 		onCompletedCheckout,
 	} = props;
 
-	// const totalPrice = 0; // carrello_che_mi_arriva.reduce((a, c) => a + c.qty * c.price, 0); //	dove a è l'accumulatore e c è il currentValue; 0 è lo stato iniziale
 	const cartTotalPrice = cart.reduce((a, c) => a + c.Quantity * c.Price, 0);
 
 	return (
