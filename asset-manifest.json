@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/prog3-filmshop/static/css/main.49196542.css",
+    "main.js": "/prog3-filmshop/static/js/main.b9d043cb.js",
+    "static/media/noun-cart-2175616.png": "/prog3-filmshop/static/media/noun-cart-2175616.8e98216b8c49c3960bf5.png",
+    "static/media/btn-close-x.png": "/prog3-filmshop/static/media/btn-close-x.bf636d791a9f21e07955.png",
+    "index.html": "/prog3-filmshop/index.html",
+    "main.49196542.css.map": "/prog3-filmshop/static/css/main.49196542.css.map",
+    "main.b9d043cb.js.map": "/prog3-filmshop/static/js/main.b9d043cb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.49196542.css",
+    "static/js/main.b9d043cb.js"
+  ]
+}
