@@ -176,7 +176,7 @@ const Home = () => {
 	const insertFilmToCartApi = async (film) => {
 		axios
 			.post(
-				"http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.FILM_TO_CART,
+				"https://" + CONFIG.HOST + ":" + CONFIG.PORT + API.FILM_TO_CART,
 				film
 			)
 			.then(function (response) {
@@ -189,7 +189,7 @@ const Home = () => {
 
 	const updateCartApi = async (film) => {
 		axios
-			.put("http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.UPD_CART, film)
+			.put("https://" + CONFIG.HOST + ":" + CONFIG.PORT + API.UPD_CART, film)
 			.then(function (response) {
 				checkForError(response);
 			})
@@ -201,7 +201,7 @@ const Home = () => {
 	const updateFilmApi = async (filmToUpdate) => {
 		axios
 			.put(
-				"http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.UPD_FILM,
+				"https://" + CONFIG.HOST + ":" + CONFIG.PORT + API.UPD_FILM,
 				filmToUpdate
 			)
 			.then(function (response) {
@@ -214,7 +214,7 @@ const Home = () => {
 
 	const deleteApi = async (film) => {
 		axios
-			.delete("http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.RM_FROM_CART, {
+			.delete("https://" + CONFIG.HOST + ":" + CONFIG.PORT + API.RM_FROM_CART, {
 				data: film,
 			})
 			.then(function (response) {
@@ -229,7 +229,7 @@ const Home = () => {
 	const deleteAllApi = async () => {
 		axios
 			.delete(
-				"http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.RM_ALL_FROM_CART
+				"https://" + CONFIG.HOST + ":" + CONFIG.PORT + API.RM_ALL_FROM_CART
 			)
 			.then(function (response) {
 				setRefresh((prev) => prev + 1);
@@ -243,7 +243,7 @@ const Home = () => {
 	const fetchAllFilms = async () => {
 		try {
 			const res = await axios.get(
-				"http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.GET_ALL_FILMS
+				"https://" + CONFIG.HOST + ":" + CONFIG.PORT + API.GET_ALL_FILMS
 			);
 			setFetchedFilms(res.data);
 		} catch (error) {
@@ -254,7 +254,7 @@ const Home = () => {
 	const fetchShoppingCart = async () => {
 		try {
 			const res = await axios.get(
-				"http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.GET_CART
+				"https://" + CONFIG.HOST + ":" + CONFIG.PORT + API.GET_CART
 			);
 			if (res.data && res.data.value === undefined) {
 				setCart(res.data);
