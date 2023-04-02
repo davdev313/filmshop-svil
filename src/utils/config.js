@@ -1,4 +1,4 @@
 export const CONFIG = {
-	HOST: "localhost",
-	PORT: 4000
+	HOST: "0u0.h.filess.io",
+	PORT: 3307
 }
