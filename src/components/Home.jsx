@@ -29,6 +29,7 @@ const Home = () => {
 
 	const onAddFilm = (e, selectedFilm) => {
 		e.preventDefault();
+		setCheckout(false);
 		const exist = cart.find(
 			(filmInCart) => filmInCart.FilmId === selectedFilm.Id
 		);
@@ -277,8 +278,8 @@ const Home = () => {
 			/>
 			<main className="container">
 				<div className="text-center my-5 d-flex flex-column justify-content-center text-muted-white">
-					<h1>Analogic Film Shop 🎞️</h1>
-					<p className="lead">
+					<h1 className="title">Impressive Film Shop 🎞️</h1>
+					<p className="lead font-weight-bold">
 						Questi rullini aspettano solo di essere impressionati!
 					</p>
 				</div>

@@ -13,14 +13,14 @@ const Card = (props) => {
 				</div>
 				<div className="card-body bg-third-color d-flex flex-column">
 					<div className="d-flex justify-content-between">
-						<h5 className="card-title m-0 lh-inherit">
+						<h5 className="card-title m-0 lh-inherit font-weight-bold fifth-color">
 							{fetchedFilm.Name.replaceAll("_", " ")}
 						</h5>
 						<p className="cart-text text-center m-0 fw-bold badge bg-fourth-color fs-6 h-fc">
-							€{fetchedFilm.Price}
+							€ {fetchedFilm.Price}
 						</p>
 					</div>
-					<p className="card-text my-3 text-justify mb-4">
+					<p className="card-text my-3 text-justify mb-4 fifth-color">
 						{fetchedFilm.Description}
 					</p>
 					{/* <p className="">

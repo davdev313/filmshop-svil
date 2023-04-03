@@ -18,7 +18,7 @@ const Navbar = (props) => {
 			<nav className="navbar navbar-dark bg-first-color fixed-top">
 				<div className="container">
 					{/* container o container-fluid */}
-					<a className="navbar-brand me-auto" href="/" title="Film Shop">
+					<a className="navbar-brand me-auto title-link" href="/" title="Film Shop">
 						<img
 							src={logo}
 							alt="Logo"

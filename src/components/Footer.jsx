@@ -8,7 +8,7 @@ function Footer() {
             <div className="container d-flex flex-wrap justify-content-between align-items-center">
                 <div className="col-md-4 d-flex align-items-center">
                     <img src={logo} alt="Logo" width="30" height="24" className="d-inline-block invert mx-1 bi pe-none mt-1" />
-                    <span className="mb-3 mb-md-0 text-muted-white">© 2023 – Davide Musarra</span>
+                    <span className="mb-md-0 text-muted-white">© 2023 – Davide Musarra</span>
                 </div>
                 <ul className="nav col-md-4 justify-content-end list-unstyled d-flex align-items-center flex-column">
                     <span className="developed-with ">Developed with</span>

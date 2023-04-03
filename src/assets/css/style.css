@@ -4,7 +4,7 @@
 :root {
 	/* Typography */
 	/* --fontFamily: 'Heebo', sans-serif; */
-	--fontSize777: .777rem;
+	--fontSize777: 0.777rem;
 	--weightNormal: 400;
 	--weightMedium: 500;
 	--weightBold: 700;
@@ -17,7 +17,7 @@
 	--brandColor3: #fbf2d5;
 	--brandColor4: #fdc57b;
 	--brandColor5: #dc5a41;
-	/* --brandColor5: #; */
+	--brandColor5: #455a64;
 
 	/* NEW PALETTE */
 	--brandColor1-new: #cad2c5;
@@ -63,10 +63,11 @@ body {
 	padding-top: 4.5rem;
 	padding-right: 0;
 	padding-bottom: 2.5rem !important;
+	font-family: "Kanit", sans-serif !important;
 }
 
 .bg-home {
-	background-color: #455a64;
+	background-color: var(--brandColor5);
 }
 
 * > a {
@@ -122,9 +123,21 @@ body {
 	background: var(--brandColor5) !important;
 }
 
+/* HOME */
+.title {
+	font-weight: 900;
+	font-style: italic;
+	color: var(--brandColor4);
+	letter-spacing: 1px;
+}
+
 /* NAVBAR CSS */
 .invert {
 	filter: invert(85%);
+}
+
+.title-link {
+	font-weight: 800;
 }
 
 /* SHOPPING CART */
@@ -154,9 +167,12 @@ body {
 	background-image: url("../images/icons/btn-close-x.png") !important;
 }
 
-/* ! TODO focus */
 button.btn:focus {
 	outline: none;
+}
+
+button.btn {
+	text-transform: uppercase;
 }
 
 .list-group-item {
@@ -251,7 +267,6 @@ button.btn:focus {
 
 /* CARD */
 .card .picture {
-
 	width: 150px;
 }
 
