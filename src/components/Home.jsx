@@ -10,7 +10,6 @@ const Home = () => {
 	const [fetchedFilms, setFetchedFilms] = useState([]); // per contenere i rullini che vengono dal db
 	const [cart, setCart] = useState([]); // per contenere stato del carrello
 	const [cartElements, setCartElements] = useState([]); // per contenere stato del carrello
-	// const [cartElement, setCartElement] = useState({}); // per contenere [{elemento:id,quantita}] nel carrello che mi servirà per eseguire la post/put a db
 	const [refresh, setRefresh] = useState(0);
 	const [checkout, setCheckout] = useState(false);
 

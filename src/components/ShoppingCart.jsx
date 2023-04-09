@@ -87,7 +87,7 @@ const ShoppingCart = (props) => {
 								<button
 									id="btn-acquista"
 									className="btn btn-primary fw-bold px-5 mt-3"
-									title="Aquista"
+									title="Acquista"
 									onClick={(e) => onSubmitOrder(e)}
 								>
 									Acquista
