@@ -1,7 +1,11 @@
+/**
+ * @author Davide Musarra <davide.musarra@studenti.unime.it>
+ */
+
 import React from "react";
 
 const ShoppingCartElement = (props) => {
-	const { cartElement, onRemoveFilm } = props;
+	const { cartElement, onRemoveFilm } = props;	// destructuring dell'oggetto props
 
 	return (
 		<li
@@ -18,24 +22,8 @@ const ShoppingCartElement = (props) => {
 					</small>
 				</div>
 				<div className="d-flex align-items-center">
-					{/* <button
-						className="btn btn-primary rm-item fw-bold btn-sm d-flex align-items-center justify-content-center h-25px w-25px"
-						title="Rimuovi il rullino dal carrello"
-						onClick={(e) => handleDec(e, cartElement)}
-					>
-						-
-					</button> */}
+					{/* Intendo tenere solo 2 cifre decimali per rappresentare il prezzo */}
 					<span className="">€ {cartElement.Price.toFixed(2)}</span>
-					{/* <button
-						className={
-							(cartElement.QuantityInStock ? "" : "disabled ") +
-							"btn btn-primary fw-bold btn-sm d-flex align-items-center justify-content-center h-25px w-25px"
-						}
-						title="Aggiungine un altro al carrello"
-						onClick={(e) => handleInc(e, cartElement)}
-					>
-						+
-					</button> */}
 				</div>
 			</div>
 			<div>

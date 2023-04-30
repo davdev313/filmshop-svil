@@ -1,3 +1,8 @@
+/**
+ * @author Davide Musarra <davide.musarra@studenti.unime.it>
+ */
+
+// import di librerie, componenti e file di configurazione
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CONFIG } from "../utils/config";
@@ -7,32 +12,35 @@ import Card from "./Card";
 import Footer from "./Footer";
 
 const Home = () => {
-	const [fetchedFilms, setFetchedFilms] = useState([]); // per contenere i rullini che vengono dal db
-	const [cart, setCart] = useState([]); // per contenere stato del carrello
-	const [cartElements, setCartElements] = useState([]); // per contenere stato del carrello
-	const [refresh, setRefresh] = useState(0);
-	const [checkout, setCheckout] = useState(false);
+	const [fetchedFilms, setFetchedFilms] = useState([]); // utile per contenere i rullini che presenti a db
+	const [cart, setCart] = useState([]); // utile per contenere i rullini nel carrello presente a db
+	const [cartElements, setCartElements] = useState([]); // utile per contenere stato del carrello a run-time
+	const [refresh, setRefresh] = useState(0); // utile per aggiornare i dati da visualizzare in pagina
+	const [checkout, setCheckout] = useState(false); // utile per gestire messaggio di avvenuto acquisto
 
-	// Initial state
+	// nell'hook useEffect faccio eseguire le chiamate alle query a backend
 	useEffect(() => {
 		fetchAllFilms();
 		fetchShoppingCart();
 
 		// eslint-disable-next-line
 	}, [refresh]);
+	// imposto come elemento dell'array delle dipendenze dell'hook useEffect la variabile refresh così da eseguirlo a ogni cambio di stato della variabile
 
 	const getFilmQuantity = (filmId) => {
-		const qty = fetchedFilms.find((film) => film.Id === filmId)?.Quantity;
+		const qty = fetchedFilms.find((film) => film.Id === filmId)?.Quantity;	// ottengo la quantità a db dell'elemento selezionato. lo individuo grazie alla funzione find()
 		return qty ? qty : 0;
 	};
 
+	// metodo utile per gestire l'aggiunta di un prodotto al carrello
 	const onAddFilm = (e, selectedFilm) => {
 		e.preventDefault();
 		setCheckout(false);
+		// controllo se l'elemento selezionato è già presente nel carrello
 		const exist = cart.find(
 			(filmInCart) => filmInCart.FilmId === selectedFilm.Id
 		);
-		if (!exist) {
+		if (!exist) {	// se non esiste, allora cambio stato alla variabile cartElements con i dati del prodotto scelto
 			const newCartElements = [
 				...cart,
 				{
@@ -49,7 +57,7 @@ const Home = () => {
 			);
 			// setCartElement(newCartElement);
 			checkInCart(newCartElements, newCartElement);
-		} else {
+		} else {	// se esiste, aggiorno la quantità del prodotto da aggiungere al carrello aumentandola di 1
 			const newCartElements = cart.map((filmInCart) =>
 				filmInCart.FilmId === selectedFilm.Id
 					? { ...exist, Quantity: exist.Quantity + 1 }
@@ -60,16 +68,16 @@ const Home = () => {
 			const newCartElement = newCartElements.find(
 				(film) => film.FilmId === selectedFilm.Id
 			);
-			// setCartElement(newCartElement);
 			checkInCart(newCartElements, newCartElement);
 		}
 	};
 
+	// metodo utile per gestire la rimozione di un prodotto al carrello
 	const onRemoveFilm = (e, selectedFilm) => {
 		e.preventDefault();
 		const exist = cartElements.find((el) => el.FilmId === selectedFilm.FilmId);
-		if (exist.Quantity === 1) {
-			const newCartElements = cartElements.filter(
+		if (exist.Quantity === 1) {	// se è l'ultimo elemento, in termine di quantità, di quel rullino nel carrello, allora procedo alla delete
+			const newCartElements = cartElements.filter(	// col metodo .filter() faccio in modo di farmi tornare un array contenente tutti i prodotti tranne quello scelto
 				(el) => el.FilmId !== selectedFilm.FilmId
 			);
 			setCartElements(newCartElements);
@@ -78,8 +86,8 @@ const Home = () => {
 				{ ...exist, Quantity: exist.Quantity - 1 },
 				true
 			);
-		} else {
-			const newCartElements = cartElements.map((el) =>
+		} else {	// altimenti procedo solo all'update del record
+			const newCartElements = cartElements.map((el) =>	// col metodo .map() scorro, se presente, per elemento singolo tutto l'array a disposizione modificando ciò che mi serve
 				el.FilmId === selectedFilm.FilmId
 					? { ...exist, Quantity: exist.Quantity - 1 }
 					: el
@@ -93,45 +101,45 @@ const Home = () => {
 		}
 	};
 
+	// metodo utile per gestire lo svuotamento del carrello
 	const onRemoveAll = (e) => {
 		e.preventDefault();
 		const toRemove = cartElements;
-		setCartElements([]);
+		setCartElements([]);	// imposto l'array di elementi del carrello usato a run-time come vuoto
 		checkInCart(toRemove, null, false, true);
 	};
 
+	// metodo utile per gestire e simulare la sottomissione dell'ordine
 	const onSubmitOrder = (e) => {
 		e.preventDefault();
-		deleteAllApi();
+		deleteAllApi();	// svuto il carrello eliminandone i record dalla tabella CART
 		setCartElements([]);
 		setCheckout(true);
 	};
 
+	// metodo utile per gestire la chiusura automatica del pannello del carrello una volta sottomesso l'ordine
 	const onCompletedCheckout = (e) => {
 		e.preventDefault();
-		document.getElementById("btn-cart").click();
+		document.getElementById("btn-cart").click();	// simulazione del click
 		setCheckout(false);
 	};
 
+	// metodo utile per gestire i prodotti nel carrello
 	const checkInCart = async (
 		cartFilms,
 		film,
 		isRemove = false,
-		isRemoveAll = false,
-		submitted = false
+		isRemoveAll = false
 	) => {
 		let found = cart.find((cartEl) => cartEl.FilmId === film?.FilmId);
 		try {
-			if (!found) {
+			if (!found) {	// se non trovo il prodotto selezionato all'interno del carrello, procedo o allo svuotamento del carrello (isRemoveAll = true) o all'inserimento del nuovo prodotto
 				if (isRemoveAll) {
-					if (!submitted) {
-						cartFilms.forEach((cartFilm) => {
-							cartFilm.Quantity =
-								getFilmQuantity(cartFilm.FilmId) + cartFilm.Quantity;
-						});
-						await (updateFilmApi([...cartFilms]), deleteAllApi());
-					} else {
-					}
+					cartFilms.forEach((cartFilm) => {
+						cartFilm.Quantity =
+							getFilmQuantity(cartFilm.FilmId) + cartFilm.Quantity;
+					});
+					await (updateFilmApi([...cartFilms]), deleteAllApi());
 				} else {
 					// INSERT
 					await (insertFilmToCartApi(cartFilms),
@@ -140,8 +148,8 @@ const Home = () => {
 						Quantity: getFilmQuantity(film.FilmId) - 1,
 					}));
 				}
-			} else {
-				if (film.Quantity > 0) {
+			} else {	// se presente, allora ne controllo la quantità
+				if (film.Quantity > 0) {	// se maggiore di 0, ne aggiorno la quantità 
 					// UPDATE
 					await (updateFilmApi({
 						...film,
@@ -150,7 +158,7 @@ const Home = () => {
 							: getFilmQuantity(film.FilmId) - 1,
 					}),
 					updateCartApi(film));
-				} else {
+				} else {	// altrimenti viene cancellato l'elemento dal carrello e ne viene ripristinata la quantità sulla tabella FILM
 					// DELETE
 					await (updateFilmApi({
 						...film,
@@ -165,6 +173,7 @@ const Home = () => {
 		}
 	};
 
+	// metodo utile per tracciare errori se presenti
 	const checkForError = (res) => {
 		if (res.data.errno) {
 			throw new Error(
@@ -173,6 +182,7 @@ const Home = () => {
 		}
 	};
 
+	// metodo utile a gestire la richiesta HTTP di tipo POST
 	const insertFilmToCartApi = async (film) => {
 		axios
 			.post(
@@ -187,6 +197,7 @@ const Home = () => {
 			});
 	};
 
+	// metodo utile a gestire la richiesta HTTP di tipo PUT per la tabella CART
 	const updateCartApi = async (film) => {
 		axios
 			.put("http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.UPD_CART, film)
@@ -198,6 +209,7 @@ const Home = () => {
 			});
 	};
 
+	// metodo utile a gestire la richiesta HTTP di tipo PUT per la tabella FILM
 	const updateFilmApi = async (filmToUpdate) => {
 		axios
 			.put(
@@ -212,6 +224,7 @@ const Home = () => {
 			});
 	};
 
+	// metodo utile a gestire la richiesta HTTP di tipo DELETE
 	const deleteApi = async (film) => {
 		axios
 			.delete("http://" + CONFIG.HOST + ":" + CONFIG.PORT + API.RM_FROM_CART, {
@@ -226,6 +239,7 @@ const Home = () => {
 			});
 	};
 
+	// metodo utile a gestire la richiesta HTTP di tipo DELETE
 	const deleteAllApi = async () => {
 		axios
 			.delete(
@@ -240,6 +254,7 @@ const Home = () => {
 			});
 	};
 
+	// metodo utile a gestire la richiesta HTTP di tipo GET per ottenere i record della tabella FILM
 	const fetchAllFilms = async () => {
 		try {
 			const res = await axios.get(
@@ -251,6 +266,7 @@ const Home = () => {
 		}
 	};
 
+	// metodo utile a gestire la richiesta HTTP di tipo GET per ottenere i record della tabella CART
 	const fetchShoppingCart = async () => {
 		try {
 			const res = await axios.get(

@@ -1,3 +1,7 @@
+/**
+ * @author Davide Musarra <davide.musarra@studenti.unime.it>
+ */
+
 import logo from "../assets/images/icons/noun-roll-film-2175698.png";
 import shoppingCart from "../assets/images/icons/noun-cart-2175616.png";
 import ShoppingCart from "./ShoppingCart";
@@ -10,15 +14,26 @@ const Navbar = (props) => {
 		onSubmitOrder,
 		checkout,
 		onCompletedCheckout,
-	} = props;
-	const cartTotalItems = cart.reduce((a, c) => a + c.Quantity, 0);
+	} = props; // destructuring dell'oggetto props
+	/* 	
+		con .reduce() scorro l'array sommando a total il prezzo dell'elemento corrente (currentPrice)
+		ottenendo la somma totale dei prezzi degli elementi nel carrello.
+		Imposto a 0 il valore iniziale cosicché al primo giro total sarà uguale a 0
+	*/
+	const cartTotalItems = cart.reduce(
+		(total, currentPrice) => total + currentPrice.Quantity,
+		0
+	);
 
 	return (
 		<header>
 			<nav className="navbar navbar-dark bg-first-color fixed-top">
 				<div className="container">
-					{/* container o container-fluid */}
-					<a className="navbar-brand me-auto title-link" href="/" title="Film Shop">
+					<a
+						className="navbar-brand me-auto title-link"
+						href="/"
+						title="Film Shop"
+					>
 						<img
 							src={logo}
 							alt="Logo"

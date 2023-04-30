@@ -1,3 +1,7 @@
+/**
+ * @author Davide Musarra <davide.musarra@studenti.unime.it>
+ */
+
 import ShoppingCartElement from "./ShoppingCartElement";
 
 const ShoppingCart = (props) => {
@@ -9,8 +13,12 @@ const ShoppingCart = (props) => {
 		onSubmitOrder,
 		checkout,
 		onCompletedCheckout,
-	} = props;
-
+	} = props; // destructuring dell'oggetto props
+	/* 	
+		con .reduce() scorro l'array sommando a total il prezzo dell'elemento corrente (currentPrice)
+		ottenendo la somma totale dei prezzi degli elementi nel carrello.
+		Imposto a 0 il valore iniziale cosicché al primo giro total sarà uguale a 0
+	*/
 	const cartTotalPrice = cart.reduce((a, c) => a + c.Quantity * c.Price, 0);
 
 	return (
@@ -36,7 +44,6 @@ const ShoppingCart = (props) => {
 			</div>
 			<hr className="mt-2" />
 			<div className="offcanvas-body">
-				{/* ELEMENTI CARRELLO */}
 				<ul className="list-group mb-3">
 					{cart.length === 0 && (
 						<div className="fs-4 text-center d-flex align-items-center flex-column">
@@ -63,6 +70,7 @@ const ShoppingCart = (props) => {
 							)}
 						</div>
 					)}
+					{/* genero gli elementi del carrello grazie al metodo .map() */}
 					{cart?.map((cartElement) => (
 						<ShoppingCartElement
 							key={`CART-${cartElement.Id}`}

@@ -1,5 +1,9 @@
+/**
+ * @author Davide Musarra <davide.musarra@studenti.unime.it>
+ */
+
 const Card = (props) => {
-	const { fetchedFilm, onAddFilm } = props;
+	const { fetchedFilm, onAddFilm } = props;	// destructuring dell'oggetto props
 
 	return (
 		<div className="col mb-5 d-flex justify-content-center flex-1">
@@ -23,12 +27,6 @@ const Card = (props) => {
 					<p className="card-text my-3 text-justify mb-4 fifth-color">
 						{fetchedFilm.Description}
 					</p>
-					{/* <p className="">
-						Quantità:&nbsp;
-						<span id={"quantity-" + fetchedFilm.Id}>
-							{fetchedFilm.Quantity}
-						</span>
-					</p> */}
 					<button
 						id={"btn-" + fetchedFilm.Id}
 						className={

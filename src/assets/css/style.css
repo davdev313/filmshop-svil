@@ -1,9 +1,8 @@
-/* React | Film Shop © 2023 */
+/* React | Impressive Film Shop © 2023 */
 
 /* CONFIGRUATION */
 :root {
 	/* Typography */
-	/* --fontFamily: 'Heebo', sans-serif; */
 	--fontSize777: 0.777rem;
 	--weightNormal: 400;
 	--weightMedium: 500;
@@ -18,13 +17,6 @@
 	--brandColor4: #fdc57b;
 	--brandColor5: #dc5a41;
 	--brandColor5: #455a64;
-
-	/* NEW PALETTE */
-	--brandColor1-new: #cad2c5;
-	--brandColor2-new: #84a98c;
-	--brandColor3-new: #52796f;
-	--brandColor4-new: #354f52;
-	--brandColor5-new: #2f3e46;
 
 	/* Coloring */
 	--bgColor: #140d14;
@@ -52,7 +44,6 @@
 }
 
 /* BODY */
-
 html {
 	position: relative;
 	min-height: 100%;
@@ -210,8 +201,6 @@ button.btn {
 
 .btn-primary {
 	--bs-btn-color: var(--textColor);
-	/* --bs-btn-bg: #0d6efd; */
-
 	--bs-btn-bg: var(--brandColor2) !important;
 	--bs-btn-border-color: var(--brandColor1) !important;
 	--bs-btn-hover-color: var(--brandColor1) !important;
@@ -225,13 +214,10 @@ button.btn {
 	--bs-btn-disabled-color: var(--brandColor1) !important;
 	--bs-btn-disabled-bg: #ccc !important;
 	--bs-btn-disabled-border-color: #ccc !important;
-	/* --bs-btn-disabled-border-color: #394a51 !important; */
 }
 
 .btn-primary.rm-item {
 	--bs-btn-color: var(--textColor);
-	/* --bs-btn-bg: #0d6efd; */
-
 	--bs-btn-bg: var(--brandColor5) !important;
 	--bs-btn-border-color: var(--brandColor1) !important;
 	--bs-btn-hover-color: #fff !important;
@@ -245,7 +231,6 @@ button.btn {
 	--bs-btn-disabled-color: var(--brandColor1) !important;
 	--bs-btn-disabled-bg: #ccc !important;
 	--bs-btn-disabled-border-color: #ccc !important;
-	/* --bs-btn-disabled-border-color: #394a51 !important; */
 }
 
 .btn-link {

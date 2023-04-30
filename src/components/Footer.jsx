@@ -1,5 +1,8 @@
-import React from 'react';
+/**
+ * @author Davide Musarra <davide.musarra@studenti.unime.it>
+ */
 
+import React from 'react';
 import logo from '../assets/images/icons/noun-roll-film-2175698.png';
 
 function Footer() {
